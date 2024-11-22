@@ -5,7 +5,7 @@ T&T is a Django-based dating platform that combines sleek design with innovative
 ## Installation and Setup
 
 1. Clone the repository:
-   `git clone https://github.com/your-username/tnt-dating-app.git`
+   `git clone https://github.com/vladanaa1/tnt-dating-app.git`
 2. Navigate to the project directory:
    `cd tnt-dating-app`
 3. Install dependencies:
