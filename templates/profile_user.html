@@ -1,0 +1,55 @@
+<!--* Marko Dasic 2022/0731 -->
+
+{% extends 'base_for_pages.html' %}
+
+{% block content %}
+
+<div>
+    {% if user.picture %}
+        <img src="{{ user.picture.url }}" alt="{{ user.username }}'s profile picture" style="border-radius: 50%; width: 150px; height: 150px;">
+    {% else %}
+        <img src="/media/default_avatar.jpg" alt="Default profile picture" style="border-radius: 50%; width: 150px; height: 150px;">
+    {% endif %}
+</div>
+
+<h1>{{ user.username }}</h1>
+
+<div>
+    <p><strong>Name:</strong> {{ user.first_name }} {{ user.last_name }}</p>
+    <p><strong>Age:</strong> {{ user.age }}</p>
+    <p><strong>Gender:</strong> {{ user.get_gender_display }}</p>
+    <p><strong>City:</strong> {{ user.city }}</p>
+    <p><strong>State:</strong> {{ user.state }}</p>
+    <p><strong>Bio:</strong> {{ user.bio }}</p>
+    <p><strong>Average Rating:</strong> {{ user.average_rating }}</p>
+
+    <h2>Hobbies</h2>
+    <ul>
+        {% for hobby in user.hobbies.all %}
+        <li>{{ hobby.name }} - {{ hobby.description }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Ratings</h2>
+    <ul>
+        {% for rating in user.ratings.all %}
+        <li>{{ rating.rating }} - {{ rating.comment }}</li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% if request.user.id == user.id %}
+<div>
+    <a href="{% url 'edit_profile' %}"><button>Edit Profile</button></a>
+    <a href="{% url 'payment' %}"><button>Become Premium Member</button></a>
+    <a href="{% url 'invite' %}"><button>Get Invite Link</button></a>
+    <a href="{% url 'delete' %}"><button>Delete Profile</button></a>
+</div>
+{% else %}
+<div>
+    <a href="{% url 'chat' user.id %}"><button>Send Message</button></a>
+    <a href="{% url 'report' user.id %}"><button>Report User</button></a>
+</div>
+{% endif %}
+
+{% endblock %}

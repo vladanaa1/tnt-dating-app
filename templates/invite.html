@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invite Friends to Join Us</title>
+    <!-- Add your CSS styles or link to an external stylesheet here -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input {
+            padding: 10px;
+            margin: 10px;
+            width: 80%;
+            max-width: 300px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Invite Friends to Join Us</h1>
+        <form>
+            <label for="joinUs">Join Us:</label>
+            <input type="text" id="joinUs" value="D:\downloads\New folder\register.html" readonly>
+            <button onclick="copyToClipboard()">Copy</button>
+        </form>
+    </div>
+
+    <script>
+        function copyToClipboard() {
+            /* Get the text field */
+            var copyText = document.getElementById("joinUs");
+
+            /* Select the text field */
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+            /* Copy the text inside the text field */
+            document.execCommand("copy");
+
+            /* Alert the copied text */
+            alert("Copied the invite link: " + copyText.value);
+        }
+    </script>
+</body>
+
+</html>

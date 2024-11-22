@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prijavi Korisnika</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        #user-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+        #report-text {
+            width: 300px;
+            height: 100px;
+            margin-bottom: 10px;
+        }
+        #report-btn {
+            margin-bottom: 10px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #back-btn {
+            margin-top: 20px;
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Prijavi Korisnika</h1>
+    <img id="user-img" src="/Users/pavlekotlajic/Desktop/Unknown.png" alt="Slika korisnika">
+    <form action="report_script.php" method="post">
+        <label for="report-text">Razlog prijave:</label><br>
+        <textarea id="report-text" name="report_reason" placeholder="Unesite razlog prijave..." required></textarea><br>
+        <input type="submit" id="report-btn" value="Prijavi korisnika">
+    </form>
+    <a href="pocetna_stranica.html" id="back-btn">Povratak na početnu stranicu</a>
+</body>
+</html>

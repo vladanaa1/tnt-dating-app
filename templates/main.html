@@ -1,0 +1,82 @@
+<!--* Vladana Babic 2021/0546 -->
+
+{% extends 'base_for_pages.html' %}
+
+{% block content %}
+
+<div id="profile-container" data-total-profiles="{{ users|length }}">
+    {% for user in users %}
+    <div class="profile" id="profile-{{ forloop.counter }}" data-user-id="{{ user.id }}" style="{% if not forloop.first %}display: none;{% endif %}">
+        <img src="{{ user.picture.url }}" alt="Profile Picture">
+        <p>{{ user.username }}</p>
+        <p>{{ user.first_name }} {{ user.last_name }}</p>
+        <p>{{ user.age }}</p>
+        <p>{{ user.bio }}</p>
+        <p>{{ user.city }}, {{ user.state }}</p>
+        <!--a href="{% url 'add_rating' user.iduser %}">Rate User</a-->
+        {% if request.user.is_premium == 1 %}
+        <!-- Display rating for premium users -->
+        <p>
+            User Rating:
+            {% if user.average_rating == 0 %}
+            N/A
+            {% endif %}
+            {% if user.average_rating > 0 %}
+            {{user.average_rating}}
+            {%endif%}
+        </p>
+        {% endif %}
+        <!-- Chat button -->
+        <a href="{% url 'chat' user.id %}" class="chat-button">Chat</a>
+    </div>
+    {% endfor %}
+</div>
+
+
+
+<div class="navigation-buttons">
+    <button id="prev-button" onclick="showPrevProfile()" disabled>&larr; Previous</button>
+    <button id="next-button" onclick="showNextProfile()">Next &rarr;</button>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+    let currentProfile = 1;
+    const totalProfiles = document.getElementById('profile-container').dataset.totalProfiles;
+
+    function showNextProfile() {
+        document.getElementById(`profile-${currentProfile}`).style.display = 'none';
+        currentProfile++;
+        document.getElementById(`profile-${currentProfile}`).style.display = 'block';
+        updateButtons();
+    }
+
+    function showPrevProfile() {
+        document.getElementById(`profile-${currentProfile}`).style.display = 'none';
+        currentProfile--;
+        document.getElementById(`profile-${currentProfile}`).style.display = 'block';
+        updateButtons();
+    }
+
+    function updateButtons() {
+        document.getElementById('prev-button').disabled = currentProfile === 1;
+        document.getElementById('next-button').disabled = currentProfile === parseInt(totalProfiles);
+    }
+
+    // Make these functions accessible globally
+    window.showNextProfile = showNextProfile;
+    window.showPrevProfile = showPrevProfile;
+    });
+
+    
+    const profiles = document.querySelectorAll('.profile');
+    profiles.forEach(profile => {
+        profile.addEventListener('click', function() {
+            const userId = this.dataset.userId;
+            window.location.href = `/profile_user/${userId}`;
+        });
+    });
+    
+</script>
+
+{% endblock %}

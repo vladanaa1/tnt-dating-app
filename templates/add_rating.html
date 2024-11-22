@@ -1,0 +1,16 @@
+<!--* Marko Dasic 2022/0731 -->
+
+{% extends 'base_for_pages.html' %}
+
+{% block content %}
+
+<body>
+    <h1>Add Rating for {{ user.username }}</h1>
+    <form method="POST" action="">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+</body>
+
+{% endblock %}
