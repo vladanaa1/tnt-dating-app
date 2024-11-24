@@ -1,4 +1,3 @@
-#* Marko Dasic 2022/0731
 
 from django.apps import AppConfig
 
