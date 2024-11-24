@@ -1,4 +1,4 @@
-#* Marko Dasic 2022/0731
+
 
 from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm
@@ -6,7 +6,7 @@ from django import forms
 from .models import *
 
 
-####################################### Marko ###########################################################################################
+
 
 # register form
 class MyUserCreationForm(UserCreationForm):
@@ -37,12 +37,3 @@ class UpdateUserForm(UserCreationForm):
         fields = ['username', 'email', 'password1', 'password2', 'gender', 'first_name', 'last_name', 'age', 'city', 'state', 'picture', 'bio', 'hobbies']
 
 
-####################################### Pavle ###########################################################################################
-
-
-
-####################################### Vladana ###########################################################################################
-
-
-
-####################################### Nina ###########################################################################################
