@@ -168,7 +168,7 @@ def ban_user(request, user_id):
                 iduser=user
             )
 
-            return redirect('home')  # Zamijenite sa stvarnim URL imenom vaše početne strane
+            return redirect('home')
 
     return render(request, 'ban_user_template.html', {'korisnik': user})
 
@@ -176,7 +176,7 @@ def delete_user(request, user_id):
     # Dobijanje korisnika iz baze podataka
     user = get_object_or_404(User, pk=user_id)
 
-    # Provera dozvola (ovo je samo primer, prilagodite vašim potrebama)
+    # Provera dozvola
     if not request.user.is_superuser:
         messages.error(request, "Nemate dozvolu za brisanje ovog korisnika.")
         return redirect('home')
@@ -248,7 +248,7 @@ def mainPage(request):
     # Convert current_user_hobbies to a list of hobby ids for use in the distance metric
     current_user_hobby_ids = list(current_user_hobbies.values_list('idhobby', flat=True))
 
-    # Initialize KNN model with appropriate parameters (e.g., k value and distance metric)
+    # Initialize KNN model with appropriate parameters
     knn_model = NearestNeighbors(n_neighbors=5, metric='jaccard')
     knn_model.fit(user_feature_vectors)
 
@@ -290,7 +290,7 @@ def update_premium_flag(request):
         return JsonResponse({'error': 'Invalid request method'}, status=400)
 
 
-# Delete page - zar ovo nije Pavle uradio?
+# Delete page
 @login_required(login_url='login')
 def deletePage(request):
     return render(request, 'delete.html')
