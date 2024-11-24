@@ -19,7 +19,6 @@ User = get_user_model()
 # Create your views here.
 
 
-####################################### Marko ###########################################################################################
 
 # Home page
 def homePage(request):
@@ -132,7 +131,6 @@ def add_rating(request, user_id):
 
 
 
-####################################### Pavle ###########################################################################################
 def getreports(request):
     reports = Report.objects.all()
     return render(request, 'profile_admin.html', {'reports': reports})
@@ -152,7 +150,6 @@ def profile_adminPage(request):
 def admin_banPage(request):
     return render(request, 'admin_ban.html')
 
- #Pavle Kotlajic 2021/0596 
 def ban_user(request, user_id):
     user = get_object_or_404(User, pk=user_id)
     if request.method == 'POST':
@@ -175,7 +172,6 @@ def ban_user(request, user_id):
 
     return render(request, 'ban_user_template.html', {'korisnik': user})
 
-#Pavle Kotlajic 2021/0596 
 def delete_user(request, user_id):
     # Dobijanje korisnika iz baze podataka
     user = get_object_or_404(User, pk=user_id)
@@ -222,7 +218,6 @@ def delete_user(request, user_id):
    
 
 
-####################################### Vladana ###########################################################################################
 
 # Main page
 @login_required(login_url='login')
@@ -232,7 +227,6 @@ def mainPage(request):
     # opposite_gender = not current_user_gender
     # users = User.objects.exclude(id=request.user.id).filter(gender=opposite_gender).filter(is_superuser=0)
     # return render(request, 'main.html', {'users': users})
-    # zakomentarisano - sig radi
 
     current_user = request.user
     current_user_gender = current_user.gender
@@ -272,7 +266,6 @@ def mainPage(request):
     return render(request, 'main.html', {'users': sorted_users})
 
 
-####################################### Nina ###########################################################################################
 
 # Chats page
 @login_required(login_url='login')
@@ -280,9 +273,6 @@ def chatsPage(request):
     return render(request, 'chats.html')
 
 
-
-
-####################################### Vladana ###########################################################################################
 
 # Payment page
 @login_required
@@ -298,7 +288,6 @@ def update_premium_flag(request):
         return JsonResponse({'message': 'is_premium flag updated successfully'})
     else:
         return JsonResponse({'error': 'Invalid request method'}, status=400)
-# Nigde se ne prikazuje korisniku poruka Payment successful!, ako to neko sredi pre mene, samo obrisite ovaj komentar
 
 
 # Delete page - zar ovo nije Pavle uradio?
@@ -312,13 +301,9 @@ def deletePage(request):
 def edit_profilePage(request):
     return render(request, 'edit_profile.html')
 
-# Report page
-# Ako nekome bude trebalo: iduser1 je id usera koji submituje report, iduser2 je id usera koji je reportovan
-# ova metoda samo dodaje u tabelu Report u bazi, admin mora da suspenduje korisnika, bazirano na prijavama
 @login_required(login_url='login')
 def reportPage(request, pk):
     if request.method == 'POST':
-        # current time and date, converted to string, da li bi bilo bolje da u bazi ovo ne cuvamo kao varchar, nego date and time?:
         current_date = datetime.now().strftime('%Y-%m-%d')  # Format as 'YYYY-MM-DD'
         current_time = datetime.now().strftime('%H:%M:%S')  # Format as 'HH:MM:SS'
         report = Report.objects.create(
