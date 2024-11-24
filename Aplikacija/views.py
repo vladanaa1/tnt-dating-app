@@ -16,10 +16,6 @@ from datetime import datetime
 
 User = get_user_model()
 
-# Create your views here.
-
-
-
 # Home page
 def homePage(request):
     return render(request, 'home.html')
