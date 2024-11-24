@@ -1,6 +1,4 @@
-#* Marko Dasic 2022/0731
-#* Pavle Kotlajic
-#* Vladana Babic 2021/0546
+
 
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib import messages
