@@ -1,5 +1,4 @@
-#* Marko Dasic 2022/0731
-#* Pavle Kotlajic 2021/0596
+
 
 from django.contrib import admin
 from django.urls import path, include
