@@ -1,4 +1,4 @@
-#* Marko Dasic 2022/0731
+
 
 from django.contrib import admin
 
